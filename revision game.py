@@ -1,0 +1,26 @@
+import csv
+cards = []
+class Card():
+    def __init__(self, keyword, definition):
+        self.keyword = keyword
+        self.definition = definition
+        cards.append(self)
+
+        
+def get_data():
+    values = []
+    with open('word.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        for column in readCSV:
+            list_def = []
+            for row in column:#extracts the cells that have something in
+                if row != '':
+                    list_def.append(row)
+            values.append(list_def)
+    return values
+
+words = get_data()
+for item in words:
+    Card(item[0], item[1])
+print(cards)
+
